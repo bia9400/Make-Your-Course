@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('public.welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+//Da mettere in admin dopo 
+/* Route::get('/home', 'HomeController@index')->name('home'); */
+
+Route::get('{any?}', function () {
+    return view('public.welcome');
+})->where("any", ".*");
